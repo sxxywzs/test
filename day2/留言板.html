@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 style="text-align: center">留言板</h1>
+<div id="say">
+    <input type="text" v-model="msg" size="40">
+    <input type="button" value="添加" @click="add()">
+    <input type="button" value="展示"  v-show="show_show" @click="display_msg()">
+    <ul id="tables" v-show="shows">
+        <li v-for="(note, index) in notebook":key="index">
+            <span>{{note}}&nbsp</span><a href="javascript:" @click="delete_note(index)">删除</a>
+        </li>
+
+    </ul>
+    <a href="javascript:" @click="delete_all()"  v-show="shows" >删除所有留言</a>
+    <br>
+    <span>留言总数量:{{notebook.length}}条</span>
+</div>
+<script src="js/vue.min.js"></script>
+<script>
+    new Vue({
+        el:"#say",
+        data:{
+            notebook:["123","23"],
+            msg:"",
+            shows:true,
+            show_show:true
+        },
+        methods:{
+            add(){
+                let msg= this.msg
+                if(msg){
+                    this.notebook.unshift(this.msg)
+                    this.msg=""
+                    this.shows=true
+                    this.show_show=true
+                }
+            },
+
+            delete_note(index){
+                console.log(index)
+                this.notebook.splice(index,1)
+                if(this.notebook.length===0){
+                    this.shows=false
+                    this.show_show=false
+                }
+            },
+            delete_all(){
+                this.notebook.splice(0,this.notebook.length)
+                this.shows=false
+                this.show_show=false
+            },
+            display_msg(){
+                console.log('123')
+                if(this.shows){
+                    this.shows=false
+                }
+                else {
+                    this.shows=true
+                }
+
+            }
+        },
+
+
+    })
+</script>
+</body>
+</html>
