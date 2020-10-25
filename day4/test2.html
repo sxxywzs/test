@@ -1,10 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<div id="test">
+    <router-link to="/ok">不要</router-link>
+<router-link to="/no">要</router-link>
+    <br>
+    <router-view></router-view>
+
+</div>
+<script src="../js/vue.min.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+    let ok={
+        template:"<div>要来点留言吗</div>>"
+    }
+    let no={
+        template:`<input type="text" v-model="msg" size="40">
+                  <input type="button" value="添加" @click="add()">
+                  <input type="button" value="展示"  v-show="show_show" @click="display_msg()">
+                  <ul id="tables" v-show="shows">
+                    <li v-for="(note, index) in notebook":key="index">
+                         <span>{{note}}&nbsp</span><a href="javascript:" @click="delete_note(index)">删除</a>
+                     </li>
+
+                  </ul>
+                  <a href="javascript:" @click="delete_all()"  v-show="shows" >删除所有留言</a>
+                    <br>
+                    <span>留言总数量:{{notebook.length}}条</span>`,
+        data(){
+            return{
+                notebook:["123","23"],
+                msg:"",
+                shows:true,
+                show_show:true
+
+            }
+
+        },
+        methods:{
+            add:function (){
+                let msg= this.msg
+                if(msg){
+                    this.notebook.unshift(this.msg)
+                    this.msg=""
+                    this.shows=true
+                    this.show_show=true
+                }
+            },
+
+            delete_note:function (index){
+                console.log(index)
+                this.notebook.splice(index,1)
+                if(this.notebook.length===0){
+                    this.shows=false
+                    this.show_show=false
+                }
+            },
+            delete_all:function (){
+                this.notebook.splice(0,this.notebook.length)
+                this.shows=false
+                this.show_show=false
+            },
+            display_msg:function (){
+                console.log('123')
+                if(this.shows){
+                    this.shows=false
+                }
+                else {
+                    this.shows=true
+                }
+
+            }
+        },
+    }
+    let myrouter=new VueRouter({
+        routes:[
+            {path:"/ok",component:ok},
+            {path:"/no",component:no},
+            {path:"/",component:ok},
+        ]
+    })
+    new Vue({
+        el:"#test",
+        data:{
+
+        },
+        router:myrouter
+
+    })
+</script>
 </body>
 </html>

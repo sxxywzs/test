@@ -1,10 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<div id="test">
+<input type="button" v-bind:value=values v-on:click="changes()">
+<input type="button" v-bind:value=values1 @click="changes1()">
+
+</div>
+<script src="../js/vue.min.js"></script>
+<script>
+    new Vue({
+        el:"#test",
+        data:{
+            values:'gogogo',
+            values1:'gogogo',
+        },
+        methods:{
+            changes:function (){
+                if (this.values==='gogogo'){
+                    this.values='backbackback'
+                }
+                else {
+                    this.values='gogogo'
+                }
+
+            },
+            changes1(){
+                if(this.values1==='gogogo'){
+                    this.values1='backbackback'
+                }
+                else {
+                    this.values1='gogogo'
+                }
+
+            }
+
+        }
+    })
+</script>
 </body>
 </html>

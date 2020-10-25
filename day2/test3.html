@@ -1,10 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<div id="test" style="text-align: center">
+
+    <input type="button" v-show="flag" v-bind:value=reduce @click="reduce_(this)">
+    <input type="number"  v-bind:value="count" size="40" style="font-size: larger">
+    <input type="button" :value=add @click="add_()">
+    <br>
+    <span v-if="count>10">{{count}}</span>
+    <span v-else>123</span>
+</div>
+<script src="../js/vue.min.js"></script>
+<script>
+    new Vue({
+        el:'#test',
+        data:{
+            count:2,
+            add:"+",
+            reduce:"-",
+            flag:true,
+
+        },
+        methods: {
+            add_(){
+                this.count+=1
+                this.flag=true
+
+            },
+            reduce_(){
+                this.count-=1
+                if(this.count===0){
+                    console.log(123)
+                    this.flag=false;
+
+
+                }
+            },
+
+        }
+    })
+
+</script>
 </body>
 </html>

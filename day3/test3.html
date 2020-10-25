@@ -1,10 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+
+
+<script>
+
+    function f1(){
+        console.log(1)
+    }
+    f1()
+    let f2=function (){
+        console.log(2)
+    }
+    f2()
+    let f3=()=>console.log(3)
+    f3()
+    let f4=()=>{
+        console.log(4)
+
+    }
+    f4()
+    let f5=num=>console.log(num)
+    f5(5)
+    let f6=num=>num
+    console.log(f6(6))
+
+</script>
 </body>
 </html>

@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<div id="test">
+<router-link to="/one">访问模块一</router-link>
+<router-link to="/two">访问模块二</router-link>
+    <router-view></router-view>
+</div>
+<script src="../js/vue.min.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+<script>
+    let one={
+        template:'<div>模块一</div>>'
+    }
+    let two={
+        template:'<div>模块二</div>>'
+    }
+    let myrouter=new VueRouter({
+        routes:[
+            {path:"/one",component:one},
+            {path:"/two",component:two},
+            {path:"/",component:two},
+        ]
+    })
+    new Vue({
+        el:"#test",
+        data:{},
+        router:myrouter
+    })
+
+</script>
 </body>
 </html>

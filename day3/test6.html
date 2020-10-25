@@ -1,10 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<div id="test">
+    <all></all>
+    <part></part>
+</div>
+<div id="test1">
+ <part ></part>
+    <part></part>
+</div>
+<script src="../js/vue.min.js"></script>
+<script>
+    let all={
+        template:'<p @click="ccc">全局组件{{test}}</p>',
+        data(){
+            return {
+                test:"ookk"
+            }
+
+        },
+        methods:{
+            ccc(){
+                window.alert('ookkk')
+            }
+
+        }
+    }
+    let part={
+        template:'<p>局部组件{{test}}</p>',
+        data:function () {
+            return {
+                test: "这个也ookk"
+            };
+        }
+    }
+    Vue.component('all',all)
+
+    new Vue({
+        el:"#test",
+        data:{},
+
+    })
+    new Vue({
+        el:"#test1",
+        data:{},
+        components:{
+           "part":part
+        }
+    })
+</script>
 </body>
 </html>

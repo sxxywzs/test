@@ -1,10 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<div id="test">
+    <a href="javascript:" @click="reduce_">{{num}}</a><br>
+    <p>十位:{{number1}}</p>
+    <p>个位:{{number2}}</p>
+</div>
+<script src="../js/vue.min.js"></script>
+<script>
+    new Vue({
+        el:"#test",
+        data:{
+            num:120,
+            number1:"",
+            number2:"",
+
+        },
+        methods:{
+            reduce_() {
+                this.num--
+            }
+        },
+        watch:{
+            num(){
+                this.number1=parseInt(this.num/10)
+                this.number2=this.num%10
+
+            }
+        }
+
+    })
+</script>
 </body>
 </html>

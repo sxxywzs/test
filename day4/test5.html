@@ -1,10 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<div id="test">
+
+    <router-view></router-view>
+
+</div>
+<script src="../js/vue.min.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+
+    let one={
+            template:`<div>
+            <h1>你来啦，请问你叫</h1>
+
+            <button @click="tus('jason')">jason</button>
+            <button @click="tus('lenny')">lenny</button>
+            <button @click="tus('rex')">rex</button></div>`,
+            methods:{
+                tus(name) {
+                    this.$router.push({path:"/two/"+name,})
+                },
+
+            },
+
+        }
+
+
+    let two={
+        template: `
+        <h1>欢迎，{{$route.params.name}}</h1>
+        `
+    }
+
+    let myRouter =new VueRouter({
+        routes: [
+            {path: "/one", component: one},
+            {path: "/two/:name", component: two},
+            {path: "/", redirect: "/one"},
+        ]
+
+    })
+    new Vue({
+        el:"#test",
+        data:{
+            names:"jason"
+        },
+        router:myRouter,
+
+    })
+</script>
 </body>
 </html>

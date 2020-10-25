@@ -1,10 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .green {
+            color: green;
+        }
+    </style>
 </head>
 <body>
-$END$
+<div id="test">
+<one css="red" name="jason"></one>
+<one css="green" name="lenny"></one>
+</div>
+<script src="../js/vue.min.js"></script>
+<script>
+    let one={
+        template:'<div :class="css">这是{{name}}的组件</div>',
+        props:['css','name']
+
+    }
+    new Vue({
+        el:"#test",
+        components:{
+            "one":one
+        }
+    })
+</script>
 </body>
 </html>

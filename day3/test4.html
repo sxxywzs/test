@@ -1,10 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<div id="test">
+
+</div>
+<script src="../js/vue.min.js"></script>
+<script>
+
+    new Vue({
+        el:"#test",
+
+    })
+    let one={
+        num:"1",
+        test:function (){
+            console.log(this.num)
+        }
+    }
+    one.test()
+    let two={
+        num:"2",
+        test:function (){
+            setTimeout(function (){
+                console.log(this.num)
+            })
+        }
+    }
+    two.test()
+    let three={
+        num:"3",
+        test:function (){
+            setTimeout(()=>{
+                console.log(this.num)
+            })
+        }
+
+    }
+    three.test()
+
+</script>
 </body>
 </html>
