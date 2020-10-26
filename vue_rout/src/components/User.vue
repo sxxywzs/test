@@ -52,7 +52,6 @@ name: "uesr",
             name: '',
             age: '',
             content: '',
-            user: {id: '', name: '', age: '', text: ''}
 
         }
     },
